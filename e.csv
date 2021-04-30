@@ -1,0 +1,9 @@
+employee_ID,first_name,last_name,role_ID,manager_ID
+1,Brad ,Davis,31,0
+2,John,Harpper,32,1
+3,Sarah ,Maltor,33,2
+4,Jack,Arrons,33,2
+5,Nikki,Chung,33,2
+6,Hellon,Shimmy,34,3
+7,Fredrick,Kimmel,34,4
+8,Marcie ,Marks,35,6
