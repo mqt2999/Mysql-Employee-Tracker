@@ -35,3 +35,53 @@ function viewAllEmployees() {
     })
 
 }
+function viewAllEmpByManagaer(){
+
+}
+function addEmployee(){
+    server.query('select * from roles',(err,res) => {
+        if (err) throw err
+        console.table(res)
+    })
+    let query = 'select * from employees'   
+
+    server.query(query,(err, res) => {
+            if (err) throw err;
+            console.table(res)
+            inquirer.prompt([
+                {
+                    type:"input",
+                    message:"what is the employee Id?",
+                    name:"emp_id"
+                },
+                {
+                    type:"input",
+                    message:"what is the employee first name?",
+                    name:"emp_fName"
+                },
+                {
+                    type:"input",
+                    message:"what is the employee last name?",
+                    name:"emp_lName"
+                },
+                {
+                    type:"input",
+                    message:"what is the employees role Id?",
+                    name:"emp_roleid"
+                },
+                {
+                    type:"input",
+                    message:"what is the employee manager id? enter the employee number of the employees manager.",
+                    name:"emp_mangid"
+                }
+                
+            ]).then((response)=>{
+                let query2 = 'insert into employees (employee_ID,first_name,last_name,role_ID,manager_ID) values (?,?,?,?,?)'
+                server.query(query2, [response.emp_id,response.emp_fName,response.emp_lName,response.emp_roleid,response.emp_mangid],(err, res) => {
+                    if (err) throw err;
+                    console.log("employee added")
+                })
+            })
+        })
+   
+}
