@@ -27,31 +27,3 @@ function startProgram(){
 
 })
 }
-
-function viewAllEmployees(){
-
-   let query = 'select employee_ID,first_name,last_name,role_TITLE,department_NAME,role_SALERY from employees inner join roles on employees.role_ID = roles.role_ID inner join departments on departments.department_ID = roles.department_ID; ';
-    
-    server.query(query, (err, res) => {
-            if (err) throw err;
-            console.table(res)
-        })
-   
-}
-function viewAllEmpByManagaer(){}
-addEmployee()
-function addEmployee(){
-    let query = 'select * from employees'
-    
-
-    server.query(query, (err, res) => {
-            if (err) throw err;
-            console.table(res)
-        })
-    inquirer.prompt([
-        {
-            type:"input",
-            message:"what is the name of the employee"
-        }
-    ])
-}
