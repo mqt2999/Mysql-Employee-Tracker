@@ -85,3 +85,20 @@ function addEmployee(){
         })
    
 }
+function deleteEmployee(){
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"what is the id of the employee you would like to delete?",
+            name:"deleteId"
+        }
+    ]).then((response)=> {
+        server.query('delete from employees where ?',{employee_ID: response.deleteId},(err,res) => {
+            if (err) throw err
+            
+        })
+        
+        
+    })
+
+}
