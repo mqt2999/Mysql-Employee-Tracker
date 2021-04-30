@@ -6,4 +6,16 @@ employee_ID,first_name,last_name,role_ID,manager_ID
 5,Nikki,Chung,33,2
 6,Hellon,Shimmy,34,3
 7,Fredrick,Kimmel,34,4
-8,Marcie ,Marks,35,6
+8,Marcie,Marks,35,6
+9,Emily,porter,1,2
+10,Jerad,hemlica,1,2
+11,derric,goul,2,9
+12,Jessica,Sherils,2,10
+13,Ahmed,Jurst,3,11
+14,Amy,Kole,3,12
+15,Harrry,Scott,21,1
+16,Erin,Hurst,21,2
+17,Margel,Thompson,22,15
+18,Jamie,Renalds,22,15
+19,Sammie,Sutton,22,16
+20,Hanna,Compt,22,16
