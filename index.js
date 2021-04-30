@@ -131,3 +131,25 @@ function updateEmployeeRole(){
         
     })
 }
+
+function updateEmployeeManager(){
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"what is the id of the employee?",
+            name:"empId"
+        },        
+        {
+            type:"input",
+            message:"what is the new manager ID?",
+            name:"updateMang"
+        }        
+    ]).then((response)=> {
+        server.query('update employees set manager_ID = ? where employee_ID = ?',[response.updateMang,response.empId],(err,res) => {
+            if (err) throw err
+            console.log("The employees department was updated!")
+        })
+        
+        
+    })
+}
