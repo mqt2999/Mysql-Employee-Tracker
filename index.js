@@ -38,6 +38,14 @@ function viewAllEmployees() {
 function viewAllEmpByManagaer(){
 
 }
+function viewAllEmpByDepartment(){
+    let query = 'select first_name,last_name,department_NAME from employees inner join roles on roles.role_ID = employees.role_ID inner join departments on roles.department_ID = departments.department_ID;';
+
+    server.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res)
+    })
+}
 function addEmployee(){
     server.query('select * from roles',(err,res) => {
         if (err) throw err
@@ -101,4 +109,25 @@ function deleteEmployee(){
         
     })
 
+}
+function updateEmployeeRole(){
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"what is the id of the employee?",
+            name:"empId"
+        },        
+        {
+            type:"input",
+            message:"what is the new role ID?",
+            name:"updateRole"
+        }        
+    ]).then((response)=> {
+        server.query('update employees set role_ID = ? where employee_ID = ?',[response.updateRole,response.empId],(err,res) => {
+            if (err) throw err
+            console.log("The employees role was updated!")
+        })
+        
+        
+    })
 }
