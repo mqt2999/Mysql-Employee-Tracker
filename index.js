@@ -23,8 +23,29 @@ function startProgram() {
             name: 'startQ'
         }
     ]).then((response) => {
+        switch(response.startQ){
+            case 'Veiw All Employee':
+            viewAllEmployees()
+            break;
+            case 'Veiw All Employees by Department':
+                viewAllEmpByDepartment()
+                break;
+            case 'Add Employees':
+                addEmployee()
+                break;
+            case 'Remove Employee':
+                deleteEmployee()
+                break;
+            case 'Update Employee Role':
+                updateEmployeeRole()
+                break;
+            case 'Update Employee Manager':
+                updateEmployeeManager()
+                break;
+        }
     })
 }
+startProgram()
 function viewAllEmployees() {
 
     let query = 'select employee_ID,first_name,last_name,role_TITLE,department_NAME,role_SALERY from employees inner join roles on employees.role_ID = roles.role_ID inner join departments on departments.department_ID = roles.department_ID; ';
@@ -32,7 +53,9 @@ function viewAllEmployees() {
     server.query(query, (err, res) => {
         if (err) throw err;
         console.table(res)
+        startProgram()
     })
+    
 
 }
 function viewAllEmpByManagaer(){
@@ -44,6 +67,7 @@ function viewAllEmpByDepartment(){
     server.query(query, (err, res) => {
         if (err) throw err;
         console.table(res)
+        startProgram()
     })
 }
 function addEmployee(){
@@ -88,6 +112,7 @@ function addEmployee(){
                 server.query(query2, [response.emp_id,response.emp_fName,response.emp_lName,response.emp_roleid,response.emp_mangid],(err, res) => {
                     if (err) throw err;
                     console.log("employee added")
+                    startProgram()
                 })
             })
         })
@@ -103,7 +128,7 @@ function deleteEmployee(){
     ]).then((response)=> {
         server.query('delete from employees where ?',{employee_ID: response.deleteId},(err,res) => {
             if (err) throw err
-            
+            startProgram()
         })
         
         
@@ -126,6 +151,7 @@ function updateEmployeeRole(){
         server.query('update employees set role_ID = ? where employee_ID = ?',[response.updateRole,response.empId],(err,res) => {
             if (err) throw err
             console.log("The employees role was updated!")
+            startProgram()
         })
         
         
@@ -148,6 +174,7 @@ function updateEmployeeManager(){
         server.query('update employees set manager_ID = ? where employee_ID = ?',[response.updateMang,response.empId],(err,res) => {
             if (err) throw err
             console.log("The employees department was updated!")
+            startProgram()
         })
         
         
